@@ -3,8 +3,6 @@ var config = require('./webpack.base.config'),
 var merge = require('webpack-merge')
 var CleanWebpackPlugin = require('clean-webpack-plugin')
 var uglifyjs = require('uglifyjs-webpack-plugin')
-var path = require('path')
-var CopyWebpackPlugin = require('copy-webpack-plugin');
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 // 去除重复的css
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
@@ -33,8 +31,8 @@ config = merge(config, {
   plugins: [
     new CleanWebpackPlugin(['./dist'],
       {
-        root: __dirname,      　　　　　　　　　　//根目录
-        verbose:  true,      　　　　　　　　　　//开启在控制台输出信息
+        root: __dirname ,       　　　　　　　　　　//根目录
+        verbose:  true,        　　　　　　　　　　//开启在控制台输出信息
         dry:      false        　　　　　　　　　　//启用删除文件
       }),
     new webpack.optimize.UglifyJsPlugin({
@@ -52,16 +50,13 @@ config = merge(config, {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
     }),
-    new CopyWebpackPlugin([
-      
-    ]),
-    // new BundleAnalyzerPlugin(),
     new OptimizeCSSPlugin({
       cssProcessorOptions: {
         safe: true
       }
-    }),
-    new webpack.BannerPlugin('ycloud v' + packageConfig.version + ' author by 友云采FED')
+    })
+     new webpack.BannerPlugin('ycloud v' + packageConfig.version + ' author by 友云采FED')
+    // new BundleAnalyzerPlugin()
   ]
 })
 module.exports = config

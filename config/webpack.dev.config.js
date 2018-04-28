@@ -21,13 +21,44 @@ config = merge(config, {
     contentBase: '../dist',
     hot: true,
     proxy: {
-      
+      '/cpu-basedocrefer': {
+        target: 'http://yc.yonyou.com',
+        secure: false,
+        changeOrigin: true,
+        host: "yc.yonyou.com"
+      },
+      '/yuncai': {
+        target: 'http://yc.yonyou.com',
+        secure: false,
+        changeOrigin: true,
+        host: "yc.yonyou.com"
+      },
+      '/file1': {
+        target: 'http://yc.yonyou.com',
+        secure: false,
+        changeOrigin: true,
+        host: "yc.yonyou.com"
+      },
+      '/file': {
+        target: 'http://yc.yonyou.com',
+        secure: false,
+        changeOrigin: true,
+        pathRewrite: {'^/file': '/file1'},
+        host: "yc.yonyou.com"
+      },
+      '/cpu-score':{
+        target: 'http://yc.yonyou.com',
+        secure: false,
+        changeOrigin: true,
+        pathRewrite: {'^/file': '/file1'},
+        host: "yc.yonyou.com"
+      }
     }
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      title: 'test008'
+      title: 'ucloud-ko-select'
     }),
     // new webpack.optimize.CommonsChunkPlugin({
     //   name: 'runtime'

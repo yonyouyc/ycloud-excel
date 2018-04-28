@@ -13,6 +13,9 @@ module.exports = {
   devtool: 'inline-source-map',
   plugins: [
     new ExtractTextPlugin({
+      filename: 'index.css',
+      disable: false,
+      allChunks: true,
     })
   ],
   resolve: {
@@ -22,6 +25,15 @@ module.exports = {
   },
   module: {
     rules: [
+//    {
+//      test: /\.(js)$/,
+//      loader: 'eslint-loader',
+//      enforce: 'pre',
+//      include: [resolve('src'), resolve('test')],
+//      options: {
+//        formatter: require('eslint-friendly-formatter')
+//      }
+//    },
       {
         test: /\.js$/,
         exclude: /(node_modules)/,
@@ -42,7 +54,6 @@ module.exports = {
             {
               loader: 'postcss-loader',
               options: {
-                minimize: true,
                 plugins: [
                   require('autoprefixer')({browsers: [
                     'last 3 versions',
@@ -50,7 +61,7 @@ module.exports = {
                 ]
               }
             }],
-          fallback: 'style-loader'
+          fallback: 'style-loader',
         })
       },
       {
@@ -68,6 +79,6 @@ module.exports = {
   },
   output: {
     path: distpath,
-    filename: 'ycloud-excel.min.js'
+    filename: 'libs.js'
   },
 };
